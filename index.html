@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokuma Petshop | Antalya Kepez - Tüm Türkiye'ye Pet Market</title>
+    <meta name="description" content="Antalya Kepez Dokuma'da minik dostlarınız için en taze mamalar, kuş yemleri ve aksesuarlar. İster mağazadan alın, ister kargo ile kapınıza gelsin.">
+    
+    <!-- Favicon (Pati İkonu) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐾</text></svg>">
+    
+    <!-- Tailwind CSS (Tasarım Motoru) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts (Samimi ve Okunaklı Fontlar) -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome (İkonlar için) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Markdown Parser (AI Cevaplarını düzgün göstermek için) -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- AOS Animation Library CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#FF8C42', // Enerjik turuncu
+                            dark: '#2C3E50',   // Güven veren koyu ton
+                            cream: '#FFF8F0',  // Arka plan kremi (Dükkan içiyle uyumlu)
+                            green: '#27AE60',  // Whatsapp yeşili
+                            purple: '#8e44ad'  // AI Asistan Rengi
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .scroll-smooth { scroll-behavior: smooth; }
+        .hero-bg {
+            /* Golden Retriever ve Kedi Dostluğu Görseli */
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1623387641168-d9803ddd3f35?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        /* AI Loading Animation */
+        .dot-flashing {
+            position: relative;
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+            background-color: #8e44ad;
+            color: #8e44ad;
+            animation: dot-flashing 1s infinite linear alternate;
+            animation-delay: 0.5s;
+        }
+        .dot-flashing::before, .dot-flashing::after {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            top: 0;
+        }
+        .dot-flashing::before {
+            left: -15px;
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+            background-color: #8e44ad;
+            color: #8e44ad;
+            animation: dot-flashing 1s infinite alternate;
+            animation-delay: 0s;
+        }
+        .dot-flashing::after {
+            left: 15px;
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+            background-color: #8e44ad;
+            color: #8e44ad;
+            animation: dot-flashing 1s infinite alternate;
+            animation-delay: 1s;
+        }
+        @keyframes dot-flashing {
+            0% { background-color: #8e44ad; }
+            50%, 100% { background-color: #e8d5f3; }
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-700 bg-brand-cream antialiased selection:bg-brand-orange selection:text-white overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md fixed w-full z-50 transition-all duration-300" data-aos="fade-down" data-aos-duration="800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <i class="fa-solid fa-paw text-3xl text-brand-orange animate-pulse"></i>
+                    <div>
+                        <h1 class="text-2xl font-bold text-brand-dark tracking-tight">Dokuma Petshop</h1>
+                        <p class="text-xs text-gray-500 font-semibold tracking-wider">MİNİK DOSTLARINIZIN YERİ</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="text-gray-600 hover:text-brand-orange font-semibold transition hover:-translate-y-0.5 transform inline-block">Ana Sayfa</a>
+                    <a href="#products" class="text-gray-600 hover:text-brand-orange font-semibold transition hover:-translate-y-0.5 transform inline-block">Ürünlerimiz</a>
+                    <a href="#ai-assistant" class="text-brand-purple font-bold hover:text-purple-700 transition flex items-center gap-1 hover:-translate-y-0.5 transform"><i class="fa-solid fa-wand-magic-sparkles"></i> Asistan</a>
+                    <a href="#about" class="text-gray-600 hover:text-brand-orange font-semibold transition hover:-translate-y-0.5 transform inline-block">Hakkımızda</a>
+                    <a href="#contact" class="text-gray-600 hover:text-brand-orange font-semibold transition hover:-translate-y-0.5 transform inline-block">İletişim</a>
+                    <a href="https://wa.me/905442471398?text=Merhaba,%20sipariş%20vermek%20istiyorum." target="_blank" class="bg-brand-green text-white px-5 py-2 rounded-full font-bold hover:bg-green-700 transition shadow-lg flex items-center gap-2 hover:scale-105 transform">
+                        <i class="fa-brands fa-whatsapp text-xl"></i> Sipariş Ver
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-brand-orange focus:outline-none">
+                        <i class="fa-solid fa-bars text-3xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-orange hover:bg-brand-cream">Ana Sayfa</a>
+                <a href="#products" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-orange hover:bg-brand-cream">Ürünlerimiz</a>
+                <a href="#ai-assistant" class="block px-3 py-2 rounded-md text-base font-bold text-brand-purple hover:bg-purple-50"><i class="fa-solid fa-wand-magic-sparkles me-2"></i> Pet Asistanı</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-orange hover:bg-brand-cream">Dükkanımız</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-orange hover:bg-brand-cream">İletişim & Konum</a>
+                <a href="tel:+905442471398" class="block px-3 py-2 rounded-md text-base font-bold text-white bg-brand-orange text-center mt-4">
+                    <i class="fa-solid fa-phone me-2"></i> Hemen Ara
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg h-screen flex items-center justify-center pt-16">
+        <div class="text-center px-4 max-w-4xl mx-auto">
+            <div data-aos="fade-down" data-aos-delay="200">
+                <span class="bg-brand-orange text-white px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wider mb-4 inline-block shadow-md">
+                    <i class="fa-solid fa-location-dot me-1"></i> Dokuma'dan Tüm Türkiye'ye
+                </span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 drop-shadow-lg leading-tight" data-aos="zoom-in" data-aos-delay="400">
+                Evinizin Neşesi <br> <span class="text-brand-orange">Minik Dostlarınız</span> İçin Buradayız
+            </h1>
+            <p class="text-xl text-gray-100 mb-8 font-semibold drop-shadow-md" data-aos="fade-up" data-aos-delay="600">
+                Kediniz için en lezzetli mamalar, kuşunuz için en taze yemler.
+                <br class="hidden md:block">İster Antalya içinde Alo Mama ile, ister kargo ile kapınızda!
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="800">
+                <a href="tel:+905442471398" class="bg-brand-orange text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-600 transition shadow-lg transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-phone"></i> Hemen Ara: 0544 247 1398
+                </a>
+                <a href="https://wa.me/905442471398?text=Merhaba,%20şehir%20dışına%20kargo%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="bg-white text-brand-dark px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition shadow-lg flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-green-500 text-2xl"></i> WhatsApp Sipariş
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hizmetler (Icon Box) -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="p-6 rounded-2xl bg-brand-cream hover:shadow-lg transition duration-300 transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-brand-orange rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl shadow-md">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-2">Türkiye'nin Her Yerine Kargo</h3>
+                    <p class="text-gray-600">Sadece Dokuma değil, nerede olursanız olun ürünlerimizi anlaşmalı kargo ile gönderiyoruz.</p>
+                </div>
+                
+                <div class="p-6 rounded-2xl bg-brand-cream hover:shadow-lg transition duration-300 transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 bg-brand-orange rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl shadow-md">
+                        <i class="fa-solid fa-dove"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-2">Minik Can Dostlarımız</h3>
+                    <p class="text-gray-600">Evinize neşe katacak, sıcak bir yuva bekleyen sevimli dostlarımızla tanışmak için dükkanımıza bekleriz.</p>
+                </div>
+                <div class="p-6 rounded-2xl bg-brand-cream hover:shadow-lg transition duration-300 transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="500">
+                    <div class="w-16 h-16 bg-brand-orange rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl shadow-md">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-2">Alo Mama Hattı</h3>
+                    <p class="text-gray-600">Antalya Kepez ve çevresine aynı gün içinde kapıya teslim hizmetimiz mevcuttur.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kategoriler -->
+    <section id="products" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12" data-aos="fade-down">
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mb-4">Ürün Çeşitlerimiz</h2>
+                <div class="w-24 h-1 bg-brand-orange mx-auto rounded-full"></div>
+                <p class="mt-4 text-gray-600 max-w-2xl mx-auto">Kedi, köpek ve kuş sahiplerinin tüm ihtiyaçları burada! Kaliteli yem, mama ve aksesuarlar.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Kedi Ürünleri -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-md cursor-pointer aspect-square" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1519052537078-e6302a4968d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Tekir Kedi" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center group-hover:bg-opacity-30 transition">
+                        <h3 class="text-white text-lg md:text-xl font-bold border-2 border-white px-3 py-1 rounded-lg text-center">KEDİ ÜRÜNLERİ</h3>
+                    </div>
+                </div>
+
+                <!-- Kuş Ürünleri -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-md cursor-pointer aspect-square" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1553051390-21a4f00b1227?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Muhabbet Kuşları ve Papağanlar" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center group-hover:bg-opacity-30 transition">
+                        <h3 class="text-white text-lg md:text-xl font-bold border-2 border-white px-3 py-1 rounded-lg text-center">KUŞ ÜRÜNLERİ</h3>
+                    </div>
+                </div>
+
+                <!-- Köpek Ürünleri -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-md cursor-pointer aspect-square" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Golden Retriever" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center group-hover:bg-opacity-30 transition">
+                        <h3 class="text-white text-lg md:text-xl font-bold border-2 border-white px-3 py-1 rounded-lg text-center">KÖPEK ÜRÜNLERİ</h3>
+                    </div>
+                </div>
+
+                <!-- Akvaryum Ürünleri -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-md cursor-pointer aspect-square" data-aos="zoom-in" data-aos-delay="400">
+                    <img src="https://images.unsplash.com/photo-1535591273668-578e31182c4f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Akvaryum Ürünleri" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center group-hover:bg-opacity-30 transition">
+                        <h3 class="text-white text-lg md:text-xl font-bold border-2 border-white px-3 py-1 rounded-lg text-center">AKVARYUM ÜRÜNLERİ</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center bg-white p-8 rounded-xl shadow-sm border border-gray-100" data-aos="fade-up">
+                <h3 class="text-2xl font-bold text-brand-dark mb-2">Açık mama veya kuş yemi mi lazım?</h3>
+                <p class="text-gray-600 mb-6">En taze açık mamalar, vitaminler, krakerler ve akvaryum malzemeleri için bize yazın.</p>
+                <a href="https://wa.me/905442471398?text=Merhaba,%20elinizde%20şu%20ürün%20var%20mı?" target="_blank" class="inline-flex items-center text-brand-orange font-bold hover:text-orange-700 transition">
+                    Stok Sorun <i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ✨ GEMINI AI SECTION ✨ -->
+    <section id="ai-assistant" class="py-16 bg-gradient-to-br from-purple-50 to-white relative overflow-hidden">
+        <!-- Background Decor -->
+        <div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-purple-200 rounded-full blur-3xl opacity-50" data-aos="fade-left"></div>
+        <div class="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-brand-orange rounded-full blur-3xl opacity-20" data-aos="fade-right"></div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+            <div class="text-center mb-8" data-aos="fade-down">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold leading-5 bg-purple-100 text-brand-purple mb-4">
+                    ✨ Yapay Zeka Destekli
+                </span>
+                <h2 class="text-3xl font-bold text-brand-dark">Dokuma Pet Danışmanı</h2>
+                <p class="text-gray-600 mt-2">Minik dostunuzun ismini mi bulamadınız? Veya bakımıyla ilgili bir sorunuz mu var? <br>Yapay zeka asistanımıza ücretsiz sorun!</p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-purple-100" data-aos="flip-up" data-aos-duration="1000">
+                <!-- Tabs -->
+                <div class="flex border-b border-gray-100">
+                    <button onclick="switchTab('name')" id="tab-name" class="flex-1 py-4 text-center font-bold text-brand-purple border-b-2 border-brand-purple bg-purple-50 transition hover:bg-purple-100">
+                        <i class="fa-solid fa-signature mr-2"></i> İsim Babası
+                    </button>
+                    <button onclick="switchTab('care')" id="tab-care" class="flex-1 py-4 text-center font-bold text-gray-500 hover:text-brand-purple transition hover:bg-gray-50">
+                        <i class="fa-solid fa-stethoscope mr-2"></i> Bakım & Tavsiye
+                    </button>
+                </div>
+
+                <div class="p-6 md:p-8">
+                    <!-- Name Generator Form -->
+                    <div id="content-name" class="block space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Dostunuzun Türü</label>
+                                <select id="pet-type" class="w-full rounded-lg border-gray-300 border p-3 focus:ring-2 focus:ring-brand-purple focus:border-transparent outline-none">
+                                    <option value="Kedi">Kedi</option>
+                                    <option value="Köpek">Köpek</option>
+                                    <option value="Muhabbet Kuşu">Muhabbet Kuşu</option>
+                                    <option value="Papağan">Papağan</option>
+                                    <option value="Balık">Balık</option>
+                                    <option value="Hamster">Hamster</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Cinsiyeti</label>
+                                <select id="pet-gender" class="w-full rounded-lg border-gray-300 border p-3 focus:ring-2 focus:ring-brand-purple focus:border-transparent outline-none">
+                                    <option value="Erkek">Erkek</option>
+                                    <option value="Dişi">Dişi</option>
+                                    <option value="Belirsiz">Farketmez</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Rengi veya Kişiliği (Kısaca)</label>
+                            <input type="text" id="pet-traits" placeholder="Örn: Çok yaramaz, sapsarı, sürekli uyuyor..." class="w-full rounded-lg border-gray-300 border p-3 focus:ring-2 focus:ring-brand-purple focus:border-transparent outline-none">
+                        </div>
+                        <button onclick="askGemini('name')" class="w-full bg-brand-purple text-white font-bold py-3 rounded-lg hover:bg-purple-700 transition transform hover:scale-[1.01] shadow-md flex justify-center items-center gap-2">
+                            <span>İsim Bul ✨</span>
+                        </button>
+                    </div>
+
+                    <!-- Care Advice Form -->
+                    <div id="content-care" class="hidden space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Dostunuzun Derdi Ne?</label>
+                            <textarea id="care-question" rows="3" placeholder="Örn: Kedim tüy döküyor ne yapmalıyım? Muhabbet kuşum konuşmuyor..." class="w-full rounded-lg border-gray-300 border p-3 focus:ring-2 focus:ring-brand-purple focus:border-transparent outline-none"></textarea>
+                        </div>
+                        <button onclick="askGemini('care')" class="w-full bg-brand-purple text-white font-bold py-3 rounded-lg hover:bg-purple-700 transition transform hover:scale-[1.01] shadow-md flex justify-center items-center gap-2">
+                            <span>Tavsiye İste ✨</span>
+                        </button>
+                    </div>
+
+                    <!-- Result Area -->
+                    <div id="ai-result-container" class="mt-6 hidden bg-gray-50 rounded-xl p-4 border border-gray-200">
+                        <div id="ai-loading" class="hidden flex flex-col items-center justify-center py-4">
+                            <div class="dot-flashing"></div>
+                            <p class="text-xs text-gray-400 mt-4">Yapay zeka düşünüyor...</p>
+                        </div>
+                        <div id="ai-response" class="prose prose-purple prose-sm max-w-none text-gray-700">
+                            <!-- Gemini response will appear here -->
+                        </div>
+                    </div>
+                    <p class="text-xs text-center text-gray-400 mt-4">Not: Yapay zeka tavsiyeleri bilgilendirme amaçlıdır. Tıbbi durumlar için lütfen veterinerinize danışın.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hakkımızda ve Dükkan -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <!-- Gerçek Dükkan Fotoğrafı -->
+                <div class="w-full md:w-1/2 relative group" data-aos="fade-right">
+                    <div class="absolute -inset-2 bg-brand-orange rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+                    <img src="https://lh3.googleusercontent.com/p/AF1QipMt_p2Ht15i01eJNC8iQBIE74drXOG3JHnpZqgV=s680-w680-h510-rw" alt="Dokuma Petshop İç Mekan" class="relative rounded-2xl shadow-2xl w-full object-cover transform transition duration-500 hover:scale-[1.01]">
+                </div>
+                
+                <div class="w-full md:w-1/2" data-aos="fade-left">
+                    <h2 class="text-3xl font-bold text-brand-dark mb-4">Kepez'in En Samimi Petshop'una Hoşgeldiniz</h2>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        Dokuma Petshop olarak Antalya Yeşiltepe Mahallesi'nde yıllardır sizinleyiz. Mahallemizde en çok beslenen dostlarımız olan kediler ve muhabbet kuşları konusunda uzmanız.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        Aradığınız ister taze bir mama, ister neşeli bir kafes aksesuarı, isterse evinize yeni bir neşe katacak minik bir dost olsun; kapımız size her zaman açık.
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center text-gray-700">
+                            <i class="fa-solid fa-check text-green-500 mr-3 text-xl"></i>
+                            <span>Taze açık ve kapalı mama çeşitleri</span>
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fa-solid fa-check text-green-500 mr-3 text-xl"></i>
+                            <span>Kuş, Balık ve Hamster malzeme desteği</span>
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fa-solid fa-check text-green-500 mr-3 text-xl"></i>
+                            <span>Güvenilir ve samimi mahalle esnafı</span>
+                        </li>
+                    </ul>
+                    <a href="https://www.instagram.com/dokumapetshop/" target="_blank" class="inline-flex items-center bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full font-bold shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
+                        <i class="fa-brands fa-instagram text-2xl mr-2"></i> Bizi Instagram'da Takip Edin
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- İletişim & Harita -->
+    <section id="contact" class="py-20 bg-brand-dark text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl font-bold mb-4">Bize Ulaşın</h2>
+                <p class="text-gray-400">Dükkanımıza bekleriz, gelemezseniz bir telefonla biz size geliriz!</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- İletişim Bilgileri -->
+                <div class="space-y-8" data-aos="fade-right">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 bg-brand-orange p-4 rounded-full">
+                            <i class="fa-solid fa-location-dot text-2xl"></i>
+                        </div>
+                        <div class="ml-6">
+                            <h3 class="text-xl font-bold mb-1">Adresimiz</h3>
+                            <p class="text-gray-300">Yeşiltepe Mahallesi, Tevfik Fikret Caddesi<br>Doğuş Apt No/57 B, Kepez / Antalya</p>
+                            <div class="mt-4 flex gap-4">
+                                <a href="https://share.google/z3DbhMwySoAm6bwR7" target="_blank" class="text-brand-orange hover:text-white underline text-sm">Google Maps'te Aç</a>
+                                <a href="https://yandex.com.tr/maps/org/dokuma_petshop/31667378581" target="_blank" class="text-brand-orange hover:text-white underline text-sm">Yandex Maps'te Aç</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 bg-brand-orange p-4 rounded-full">
+                            <i class="fa-solid fa-phone text-2xl"></i>
+                        </div>
+                        <div class="ml-6">
+                            <h3 class="text-xl font-bold mb-1">Telefon & Sipariş</h3>
+                            <p class="text-gray-300 mb-2">Haftanın her günü bizi arayabilirsiniz.</p>
+                            <a href="tel:+905442471398" class="text-2xl font-bold hover:text-brand-orange transition">0544 247 1398</a>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 bg-brand-orange p-4 rounded-full">
+                            <i class="fa-solid fa-envelope text-2xl"></i>
+                        </div>
+                        <div class="ml-6">
+                            <h3 class="text-xl font-bold mb-1">Çalışma Saatlerimiz</h3>
+                            <p class="text-gray-300">Haftanın her günü hizmetinizdeyiz.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Google Maps Embed -->
+                <div class="rounded-2xl overflow-hidden shadow-2xl border-4 border-gray-600 h-80 md:h-auto" data-aos="fade-left">
+                    <!-- Koordinatlara göre embed (36.915972, 30.682839) -->
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3190.569612345678!2d30.682839!3d36.915972!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzbCsDU0JzU3LjUiTiAzMMKwNDAnNTguMiJF!5e0!3m2!1str!2str!4v1600000000000!5m2!1str!2str" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-500 py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>&copy; 2024 Dokuma Petshop. Tüm hakları saklıdır.</p>
+            <div class="mt-4 flex justify-center space-x-6">
+                <a href="https://www.instagram.com/dokumapetshop/" target="_blank" class="hover:text-white transition"><i class="fa-brands fa-instagram text-2xl"></i></a>
+                <a href="https://wa.me/905442471398" target="_blank" class="hover:text-white transition"><i class="fa-brands fa-whatsapp text-2xl"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sticky WhatsApp Button -->
+    <a href="https://wa.me/905442471398?text=Merhaba,%20Dokuma%20Petshop%20sitenizden%20yazıyorum." target="_blank" class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-2xl hover:bg-green-600 transition z-50 animate-bounce flex items-center justify-center w-16 h-16">
+        <i class="fa-brands fa-whatsapp text-4xl"></i>
+    </a>
+
+    <!-- AOS Script Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Scripts -->
+    <script>
+        // AOS Animasyon Başlatma
+        AOS.init({
+            duration: 1000, // 1 saniye sürsün
+            once: true, // Sadece bir kere çalışsın (aşağı yukarı yapınca tekrar etmesin)
+        });
+
+        // NOT: GitHub Pages gibi kendi sunucunuzda kullanacaksanız aşağıdaki tırnak içine kendi API anahtarınızı (AIza...) yazın.
+        // Bu önizleme ortamında sistemin çalışması için boş bırakıyoruz.
+        const apiKey = "AIzaSyCzsEEXuBEmI4EBTjx3SJzbuKCk9e8qcqU"; // Kendi sunucunuzda kullanmak için tırnak içine "AIzaSyCzsEEXuBEmI4EBTjx3SJzbuKCk9e8qcqU" yazın.
+
+        // Mobile Menu Script
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Tab Switching for AI Section
+        function switchTab(tab) {
+            const tabName = document.getElementById('tab-name');
+            const tabCare = document.getElementById('tab-care');
+            const contentName = document.getElementById('content-name');
+            const contentCare = document.getElementById('content-care');
+            const resultContainer = document.getElementById('ai-result-container');
+            
+            // Hide result when switching
+            resultContainer.classList.add('hidden');
+            document.getElementById('ai-response').innerHTML = '';
+
+            if (tab === 'name') {
+                tabName.classList.add('text-brand-purple', 'border-b-2', 'border-brand-purple', 'bg-purple-50');
+                tabName.classList.remove('text-gray-500', 'hover:bg-gray-50');
+                
+                tabCare.classList.remove('text-brand-purple', 'border-b-2', 'border-brand-purple', 'bg-purple-50');
+                tabCare.classList.add('text-gray-500', 'hover:bg-gray-50');
+                
+                contentName.classList.remove('hidden');
+                contentCare.classList.add('hidden');
+            } else {
+                tabCare.classList.add('text-brand-purple', 'border-b-2', 'border-brand-purple', 'bg-purple-50');
+                tabCare.classList.remove('text-gray-500', 'hover:bg-gray-50');
+                
+                tabName.classList.remove('text-brand-purple', 'border-b-2', 'border-brand-purple', 'bg-purple-50');
+                tabName.classList.add('text-gray-500', 'hover:bg-gray-50');
+                
+                contentCare.classList.remove('hidden');
+                contentName.classList.add('hidden');
+            }
+        }
+
+        // Gemini AI Logic
+        async function askGemini(type) {
+            const resultContainer = document.getElementById('ai-result-container');
+            const loading = document.getElementById('ai-loading');
+            const responseDiv = document.getElementById('ai-response');
+            let userPrompt = "";
+
+            if (type === 'name') {
+                const petType = document.getElementById('pet-type').value;
+                const petGender = document.getElementById('pet-gender').value;
+                const petTraits = document.getElementById('pet-traits').value;
+
+                if (!petTraits.trim()) {
+                    alert("Lütfen minik dostunuzun özelliklerini kısaca yazın (rengi, huyu vb.)");
+                    return;
+                }
+
+                userPrompt = `Bir ${petGender} ${petType} için Türkçe isim önerileri yap. Özellikleri: ${petTraits}. Cevabı samimi bir petshop esnafı gibi ver, Antalya Kepez şivesi katmadan ama çok sıcak kanlı olsun. 5 tane yaratıcı isim öner ve nedenlerini kısaca yaz.`;
+            } else {
+                const question = document.getElementById('care-question').value;
+                
+                if (!question.trim()) {
+                    alert("Lütfen sorunuzu yazın.");
+                    return;
+                }
+
+                userPrompt = `Bir petshop sahibi olarak bu soruya kısa ve öz Türkçe cevap ver: "${question}". Cevabın samimi olsun, "bizim dükkana bekleriz" gibi ifadeler kullanabilirsin. Eğer tıbbi/ciddi bir durum gibi görünüyorsa mutlaka veterinere gitmesini söyle. Asla ilaç tavsiyesi verme.`;
+            }
+
+            // Show loading
+            resultContainer.classList.remove('hidden');
+            loading.classList.remove('hidden');
+            responseDiv.innerHTML = '';
+            
+            // Retry logic function
+            const fetchWithRetry = async (url, options, retries = 3, backoff = 1000) => {
+                try {
+                    const response = await fetch(url, options);
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    return await response.json();
+                } catch (error) {
+                    if (retries > 0) {
+                        await new Promise(r => setTimeout(r, backoff));
+                        return fetchWithRetry(url, options, retries - 1, backoff * 2);
+                    } else {
+                        throw error;
+                    }
+                }
+            };
+
+            try {
+                // gemini-2.5-flash-preview-09-2025 is the latest Flash model available in this environment
+                const data = await fetchWithRetry(
+                    `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            contents: [{
+                                parts: [{ text: userPrompt }]
+                            }]
+                        })
+                    }
+                );
+
+                const aiText = data.candidates[0].content.parts[0].text;
+                
+                // Parse Markdown and display
+                responseDiv.innerHTML = marked.parse(aiText);
+
+            } catch (error) {
+                console.error('Error:', error);
+                responseDiv.innerHTML = '<p class="text-red-500">Üzgünüm, şu an bağlantıda bir sorun var. Lütfen WhatsApp\'tan bize yazın veya biraz sonra tekrar deneyin.</p>';
+            } finally {
+                loading.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
