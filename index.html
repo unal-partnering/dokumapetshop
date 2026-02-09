@@ -475,9 +475,8 @@
             once: true, // Sadece bir kere çalışsın (aşağı yukarı yapınca tekrar etmesin)
         });
 
-        // NOT: GitHub Pages gibi kendi sunucunuzda kullanacaksanız aşağıdaki tırnak içine kendi API anahtarınızı (AIza...) yazın.
-        // Bu önizleme ortamında sistemin çalışması için boş bırakıyoruz.
-        const apiKey = "AIzaSyCzsEEXuBEmI4EBTjx3SJzbuKCk9e8qcqU"; // Kendi sunucunuzda kullanmak için tırnak içine "AIzaSyCzsEEXuBEmI4EBTjx3SJzbuKCk9e8qcqU" yazın.
+        // HUGGING FACE API AYARLARI
+        const apiKey = "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"; // Hugging Face Token'ını buraya yapıştır
 
         // Mobile Menu Script
         const btn = document.getElementById('mobile-menu-btn');
@@ -526,7 +525,7 @@
             }
         }
 
-        // Gemini AI Logic
+        // AI Logic (Hugging Face)
         async function askGemini(type) {
             const resultContainer = document.getElementById('ai-result-container');
             const loading = document.getElementById('ai-loading');
@@ -577,23 +576,28 @@
             };
 
             try {
-                // gemini-2.5-flash-preview-09-2025 is the latest Flash model available in this environment
+                // Using Mistral-7B-Instruct via Hugging Face Inference API
                 const data = await fetchWithRetry(
-                    `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`,
+                    "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.3",
                     {
                         method: 'POST',
                         headers: {
+                            'Authorization': `Bearer ${apiKey}`,
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
-                            contents: [{
-                                parts: [{ text: userPrompt }]
-                            }]
+                            inputs: `<s>[INST] ${userPrompt} [/INST]`, // Mistral Instruction format
+                            parameters: {
+                                max_new_tokens: 512,
+                                return_full_text: false,
+                                temperature: 0.7
+                            }
                         })
                     }
                 );
 
-                const aiText = data.candidates[0].content.parts[0].text;
+                // HF response is an array of objects
+                const aiText = data[0].generated_text;
                 
                 // Parse Markdown and display
                 responseDiv.innerHTML = marked.parse(aiText);
