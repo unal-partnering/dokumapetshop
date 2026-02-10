@@ -223,7 +223,6 @@
 
                 <!-- Kuş Ürünleri -->
                 <div class="group relative overflow-hidden rounded-2xl shadow-md cursor-pointer aspect-square" data-aos="zoom-in" data-aos-delay="200">
-                    <!-- GÜNCELLENDİ: Müşteri isteği üzerine dosya adı 'kus.png' yapıldı -->
                     <img src="kus.png" alt="Muhabbet Kuşları ve Papağanlar" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
                     <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center group-hover:bg-opacity-30 transition">
                         <h3 class="text-white text-lg md:text-xl font-bold border-2 border-white px-3 py-1 rounded-lg text-center">KUŞ ÜRÜNLERİ</h3>
@@ -257,7 +256,7 @@
         </div>
     </section>
 
-    <!-- ✨ GEMINI AI SECTION ✨ -->
+    <!-- ✨ POLLINATIONS AI SECTION ✨ -->
     <section id="ai-assistant" class="py-16 bg-gradient-to-br from-purple-50 to-white relative overflow-hidden">
         <!-- Background Decor -->
         <div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-purple-200 rounded-full blur-3xl opacity-50" data-aos="fade-left"></div>
@@ -266,7 +265,7 @@
         <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
             <div class="text-center mb-8" data-aos="fade-down">
                 <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold leading-5 bg-purple-100 text-brand-purple mb-4">
-                    ✨ Yapay Zeka Destekli
+                    ✨ Yapay Zeka Destekli (Pollinations AI)
                 </span>
                 <h2 class="text-3xl font-bold text-brand-dark">Dokuma Pet Danışmanı</h2>
                 <p class="text-gray-600 mt-2">Minik dostunuzun ismini mi bulamadınız? Veya bakımıyla ilgili bir sorunuz mu var? <br>Yapay zeka asistanımıza ücretsiz sorun!</p>
@@ -311,7 +310,7 @@
                             <label class="block text-sm font-medium text-gray-700 mb-1">Rengi veya Kişiliği (Kısaca)</label>
                             <input type="text" id="pet-traits" placeholder="Örn: Çok yaramaz, sapsarı, sürekli uyuyor..." class="w-full rounded-lg border-gray-300 border p-3 focus:ring-2 focus:ring-brand-purple focus:border-transparent outline-none">
                         </div>
-                        <button onclick="askGemini('name')" class="w-full bg-brand-purple text-white font-bold py-3 rounded-lg hover:bg-purple-700 transition transform hover:scale-[1.01] shadow-md flex justify-center items-center gap-2">
+                        <button onclick="askAI('name')" class="w-full bg-brand-purple text-white font-bold py-3 rounded-lg hover:bg-purple-700 transition transform hover:scale-[1.01] shadow-md flex justify-center items-center gap-2">
                             <span>İsim Bul ✨</span>
                         </button>
                     </div>
@@ -322,7 +321,7 @@
                             <label class="block text-sm font-medium text-gray-700 mb-1">Dostunuzun Derdi Ne?</label>
                             <textarea id="care-question" rows="3" placeholder="Örn: Kedim tüy döküyor ne yapmalıyım? Muhabbet kuşum konuşmuyor..." class="w-full rounded-lg border-gray-300 border p-3 focus:ring-2 focus:ring-brand-purple focus:border-transparent outline-none"></textarea>
                         </div>
-                        <button onclick="askGemini('care')" class="w-full bg-brand-purple text-white font-bold py-3 rounded-lg hover:bg-purple-700 transition transform hover:scale-[1.01] shadow-md flex justify-center items-center gap-2">
+                        <button onclick="askAI('care')" class="w-full bg-brand-purple text-white font-bold py-3 rounded-lg hover:bg-purple-700 transition transform hover:scale-[1.01] shadow-md flex justify-center items-center gap-2">
                             <span>Tavsiye İste ✨</span>
                         </button>
                     </div>
@@ -334,7 +333,7 @@
                             <p class="text-xs text-gray-400 mt-4">Yapay zeka düşünüyor...</p>
                         </div>
                         <div id="ai-response" class="prose prose-purple prose-sm max-w-none text-gray-700">
-                            <!-- Gemini response will appear here -->
+                            <!-- AI response will appear here -->
                         </div>
                     </div>
                     <p class="text-xs text-center text-gray-400 mt-4">Not: Yapay zeka tavsiyeleri bilgilendirme amaçlıdır. Tıbbi durumlar için lütfen veterinerinize danışın.</p>
@@ -350,7 +349,6 @@
                 <!-- Gerçek Dükkan Fotoğrafı -->
                 <div class="w-full md:w-1/2 relative group" data-aos="fade-right">
                     <div class="absolute -inset-2 bg-brand-orange rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
-                    <!-- GÜNCELLENDİ: Müşteri isteği üzerine dosya adı 'dukkan.png' yapıldı -->
                     <img src="dukkan.png" alt="Dokuma Petshop İç Mekan" class="relative rounded-2xl shadow-2xl w-full object-cover transform transition duration-500 hover:scale-[1.01]">
                 </div>
                 
@@ -475,8 +473,8 @@
             once: true, // Sadece bir kere çalışsın (aşağı yukarı yapınca tekrar etmesin)
         });
 
-        // HUGGING FACE API AYARLARI
-        const apiKey = "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"; // Hugging Face Token'ını buraya yapıştır
+        // NOT: Pollinations AI kullanıldığı için API Key gerekmez.
+        // const apiKey = "";
 
         // Mobile Menu Script
         const btn = document.getElementById('mobile-menu-btn');
@@ -525,8 +523,8 @@
             }
         }
 
-        // AI Logic (Hugging Face)
-        async function askGemini(type) {
+        // Pollinations AI Logic
+        async function askAI(type) {
             const resultContainer = document.getElementById('ai-result-container');
             const loading = document.getElementById('ai-loading');
             const responseDiv = document.getElementById('ai-response');
@@ -560,15 +558,15 @@
             responseDiv.innerHTML = '';
             
             // Retry logic function
-            const fetchWithRetry = async (url, options, retries = 3, backoff = 1000) => {
+            const fetchWithRetry = async (url, retries = 3, backoff = 1000) => {
                 try {
-                    const response = await fetch(url, options);
+                    const response = await fetch(url);
                     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                    return await response.json();
+                    return await response.text(); // Pollinations returns raw text, not JSON usually
                 } catch (error) {
                     if (retries > 0) {
                         await new Promise(r => setTimeout(r, backoff));
-                        return fetchWithRetry(url, options, retries - 1, backoff * 2);
+                        return fetchWithRetry(url, retries - 1, backoff * 2);
                     } else {
                         throw error;
                     }
@@ -576,28 +574,12 @@
             };
 
             try {
-                // Using Mistral-7B-Instruct via Hugging Face Inference API
-                const data = await fetchWithRetry(
-                    "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.3",
-                    {
-                        method: 'POST',
-                        headers: {
-                            'Authorization': `Bearer ${apiKey}`,
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            inputs: `<s>[INST] ${userPrompt} [/INST]`, // Mistral Instruction format
-                            parameters: {
-                                max_new_tokens: 512,
-                                return_full_text: false,
-                                temperature: 0.7
-                            }
-                        })
-                    }
-                );
+                // Pollinations AI Endpoint (Free & No Key)
+                // Using 'openai' model as requested
+                const encodedPrompt = encodeURIComponent(userPrompt);
+                const url = `https://text.pollinations.ai/${encodedPrompt}?model=openai`;
 
-                // HF response is an array of objects
-                const aiText = data[0].generated_text;
+                const aiText = await fetchWithRetry(url);
                 
                 // Parse Markdown and display
                 responseDiv.innerHTML = marked.parse(aiText);
